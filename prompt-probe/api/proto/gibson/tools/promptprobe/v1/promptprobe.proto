@@ -6,23 +6,68 @@ import "gibson/graphrag/v1/graphrag.proto";
 
 option go_package = "github.com/zeroroot-ai/gibson-redteam-example/prompt-probe/api/gen/gibson/tools/promptprobe/v1;promptprobev1";
 
-// PromptProbeRequest is the input the agent sends to this tool.
-// Add fields specific to your tool's contract.
+// PromptProbeRequest tells the tool to send one crafted payload to an
+// LLM chat/completion endpoint and report what came back. The tool is
+// stateless: one request, one probe, one verdict. It performs no LLM
+// reasoning — the calling agent decides what to do with the result.
 message PromptProbeRequest {
-  // Replace with the real fields your tool needs.
-  string target = 1;
+  // target_url is the LLM endpoint to probe (e.g. an OpenAI-compatible
+  // /v1/chat/completions URL).
+  string target_url = 1;
+
+  // payload is the crafted prompt text to send (e.g. a jailbreak or
+  // prompt-injection string).
+  string payload = 2;
+
+  // technique_id is an optional MITRE ATT&CK technique id (e.g. "T1190")
+  // recorded on the discovery graph so campaigns can be correlated.
+  string technique_id = 3;
+
+  // headers are extra HTTP headers to send (e.g. Authorization,
+  // Content-Type). Merged over the tool's defaults.
+  map<string, string> headers = 4;
+
+  // prompt_field is the JSON body field the payload is placed in.
+  // Defaults to "prompt" when empty. Use "messages" handling is left to
+  // the caller via a pre-rendered payload.
+  string prompt_field = 5;
 }
 
-// PromptProbeResponse is the structured result the agent receives.
+// SignalMatch is one pattern the response analyzer matched. Multiple
+// matches can fire for a single response.
+message SignalMatch {
+  // kind classifies the signal: "refusal", "leak", or
+  // "injection_success".
+  string kind = 1;
+
+  // pattern is the human-readable indicator that matched.
+  string pattern = 2;
+}
+
+// PromptProbeResponse is the structured verdict for one probe.
 //
 // Field 100 is reserved platform-wide for gibson.graphrag.v1.DiscoveryResult.
-// The Gibson daemon's DiscoveryProcessor reflects on every tool response
-// and writes the entries into the GraphRAG (Neo4j) knowledge graph
-// automatically — see AGENTS.md and the README for the full contract.
+// The Gibson daemon's DiscoveryProcessor reflects on field 100 of every
+// tool response and writes the entries into the GraphRAG (Neo4j)
+// knowledge graph automatically — no Cypher from this tool.
 message PromptProbeResponse {
-  // Add tool-specific result fields here.
-  string raw_output = 1;
+  // status_code is the HTTP status returned by the target.
+  int32 status_code = 1;
+
+  // body is the (possibly truncated) response body.
+  string body = 2;
+
+  // latency_ms is the round-trip time in milliseconds.
+  int64 latency_ms = 3;
+
+  // refused is true when the response looks like a model refusal.
+  bool refused = 4;
+
+  // signal_matches are the indicators the analyzer detected.
+  repeated SignalMatch signal_matches = 5;
 
   // ── Field 100 is reserved for DiscoveryResult. ──
+  // Populated with the probed Endpoint and the Technique it was tested
+  // with, so the knowledge graph records what was exercised.
   gibson.graphrag.v1.DiscoveryResult discovery = 100;
 }
