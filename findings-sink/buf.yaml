@@ -1,7 +1,9 @@
 version: v2
 modules:
+  # findingssink.proto has no external imports, so the plugin needs no
+  # vendored deps — it publishes as a standalone BSR module.
   - path: api/proto
-  - path: proto/vendor
+    name: buf.build/zeroroot-ai/findings-sink
 lint:
   use:
     - STANDARD
