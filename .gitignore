@@ -1,0 +1,16 @@
+# Compiled binaries (each component's Makefile builds in-place)
+llm-redteam/llm-redteam
+prompt-probe/prompt-probe
+findings-sink/findings-sink
+
+# Generated proto bindings are regenerated via `make proto`
+**/api/gen/
+
+# Local credentials / daemon state — never commit
+.gibson/
+host_key
+**/*.client_secret
+
+# OS / editor cruft
+.DS_Store
+*.swp
