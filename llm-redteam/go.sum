@@ -1,5 +1,9 @@
 buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.11-20260415201107-50325440f8f2.1 h1:s6hzCXtND/ICdGPTMGk7C+/BFlr2Jg5GyH0NKf4XGXg=
 buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.11-20260415201107-50325440f8f2.1/go.mod h1:tvtbpgaVXZX4g6Pn+AnzFycuRK3MOz5HJfEGeEllXYM=
+buf.build/gen/go/zeroroot-ai-platform/sdk/protocolbuffers/go v1.36.11-20260531115610-6ddad75aadf4.1 h1:1JlOLL2gwSO/TPrSNaTBQSl4xJBLBC3qGanskHt9CAQ=
+buf.build/gen/go/zeroroot-ai-platform/sdk/protocolbuffers/go v1.36.11-20260531115610-6ddad75aadf4.1/go.mod h1:btYig3R9u5MwB84rzb/cODoFoTHwKZ27F+vwR50rjR4=
+buf.build/gen/go/zeroroot-ai/prompt-probe/protocolbuffers/go v1.36.11-20260531135723-c79fde2435d7.1 h1:RyuasPG4OH9nz5tUFrgw8q6uawYFaQJ4a+3Q/sJARFE=
+buf.build/gen/go/zeroroot-ai/prompt-probe/protocolbuffers/go v1.36.11-20260531135723-c79fde2435d7.1/go.mod h1:QlcgruMNAvPRYoACKTtgzvDV3yIh3Wthv1XNyY/6gKA=
 github.com/Microsoft/go-winio v0.6.2 h1:F2VQgta7ecxGYO8k3ZZz3RS8fVIXVxONVUPlNERoyfY=
 github.com/Microsoft/go-winio v0.6.2/go.mod h1:yd8OoFMLzJbo9gZq8j5qaps8bJ9aShtEA8Ipt1oGCvU=
 github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=
