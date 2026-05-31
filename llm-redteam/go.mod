@@ -2,7 +2,7 @@ module github.com/zeroroot-ai/gibson-redteam-example/llm-redteam
 
 go 1.25.10
 
-require github.com/zeroroot-ai/sdk v0.124.0
+require github.com/zeroroot-ai/sdk v0.128.0
 
 require (
 	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.11-20260415201107-50325440f8f2.1 // indirect

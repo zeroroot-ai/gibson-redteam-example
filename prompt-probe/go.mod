@@ -3,7 +3,7 @@ module github.com/zeroroot-ai/gibson-redteam-example/prompt-probe
 go 1.25.10
 
 require (
-	github.com/zeroroot-ai/sdk v0.124.0
+	github.com/zeroroot-ai/sdk v0.128.0
 	google.golang.org/protobuf v1.36.11
 )
 
