@@ -1,0 +1,8 @@
+apiVersion: component.gibson.zeroroot.ai/v1
+kind: agent
+metadata:
+  name: llm-redteam
+  version: 0.1.0
+  description: "llm-redteam agent"
+spec:
+  main_path: ./
