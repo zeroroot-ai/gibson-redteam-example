@@ -9,7 +9,7 @@ spec:
   workload_class: plugin
   runtime: process
   secrets:
-  - name: tracker-token
+  - name: cred:tracker-token
     scope: startup
     rotation: live
     required: true
