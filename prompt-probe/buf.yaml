@@ -1,7 +1,11 @@
 version: v2
 modules:
+  # The tool's own protos. Published to BSR; its gibson/graphrag/v1
+  # import resolves through the BSR dep below (no vendoring — ADR-0028).
   - path: api/proto
-  - path: proto/vendor
+    name: buf.build/zeroroot-ai/prompt-probe
+deps:
+  - buf.build/zeroroot-ai-platform/sdk
 lint:
   use:
     - STANDARD
