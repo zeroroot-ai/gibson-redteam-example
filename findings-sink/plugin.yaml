@@ -9,15 +9,29 @@ spec:
   workload_class: plugin
   runtime: process
   secrets:
+  # The webhook backend authenticates with this token. required:false so
+  # the plugin starts dependency-free with the in-memory backend; when
+  # the secret is provisioned and FINDINGS_SINK_WEBHOOK_URL is set, the
+  # webhook backend is used. Declaring it here puts it under the
+  # daemon's secret lifecycle (rotation/invalidation) and surfaces it on
+  # the dashboard Secrets page.
   - name: cred:tracker-token
     scope: startup
     rotation: live
-    required: true
+    required: false
   methods:
-  - name: Echo
-    description: "Echo returns the request message unchanged."
-    request_proto: "gibson.plugins.findingssink.v1.EchoRequest"
-    response_proto: "gibson.plugins.findingssink.v1.EchoResponse"
+  - name: FileFinding
+    description: "File a finding and return its ticket id."
+    request_proto: "gibson.plugins.findingssink.v1.FileFindingRequest"
+    response_proto: "gibson.plugins.findingssink.v1.FileFindingResponse"
+  - name: ListTickets
+    description: "List filed tickets, optionally filtered by severity/category."
+    request_proto: "gibson.plugins.findingssink.v1.ListTicketsRequest"
+    response_proto: "gibson.plugins.findingssink.v1.ListTicketsResponse"
+  - name: Annotate
+    description: "Append a note to an existing ticket."
+    request_proto: "gibson.plugins.findingssink.v1.AnnotateRequest"
+    response_proto: "gibson.plugins.findingssink.v1.AnnotateResponse"
   health:
     startup_timeout: 30s
     liveness_interval: 10s
