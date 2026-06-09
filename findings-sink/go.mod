@@ -1,9 +1,9 @@
 module github.com/zeroroot-ai/gibson-redteam-example/findings-sink
 
-go 1.25.10
+go 1.25.11
 
 require (
-	github.com/zeroroot-ai/sdk v0.128.0
+	github.com/zeroroot-ai/sdk v0.137.0
 	google.golang.org/protobuf v1.36.11
 )
 
@@ -12,9 +12,10 @@ require (
 	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
 	github.com/rogpeppe/go-internal v1.14.1 // indirect
+	go.opentelemetry.io/otel/sdk/metric v1.44.0 // indirect
 	golang.org/x/net v0.53.0 // indirect
 	golang.org/x/sync v0.20.0 // indirect
-	golang.org/x/sys v0.43.0 // indirect
+	golang.org/x/sys v0.45.0 // indirect
 	golang.org/x/text v0.36.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260401001100-f93e5f3e9f0f // indirect
 	google.golang.org/grpc v1.81.1 // indirect
